@@ -7,9 +7,13 @@ import { ClientesRoutingModule } from './clientes-routing.module';
 
 @NgModule({
   declarations: [ClientesFormComponent],
+  
   imports: [
     CommonModule,
-    ClientesRoutingModule
+    ClientesRoutingModule,
+    
+  ], exports:[
+    ClientesFormComponent
   ]
 })
 export class ClientesModule { }
