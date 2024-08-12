@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'
-
 import { Cliente } from '../cliente';
 import { ClientesService } from '../../clientes.service'
 
@@ -28,7 +27,7 @@ export class ClientesListaComponent implements OnInit {
   }
 
   novoCadastro(){
-    this.router.navigate(['/clientes/form'])
+    this.router.navigate(['/clientes-form'])
   }
 
   preparaDelecao(cliente: Cliente){
