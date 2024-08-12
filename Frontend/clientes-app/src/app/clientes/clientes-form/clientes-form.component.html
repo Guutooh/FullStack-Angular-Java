@@ -4,46 +4,57 @@
 </ol>
 <div class="container">
 
-<form action="">
-    <div class="row">
-        <div class="col-md-6">
-            <div class="form-group">
-                <label>ID:</label>
-                <input type="text" name="" id="" class="form-control" disabled>
+    <form #clienteForm="ngForm" (ngSubmit)="onSubmit()">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-success" role="alert" *ngIf="success == true">
+                    Cliente salvo/atualizado com sucesso!
+                </div>
+                <div class="alert alert-danger" role="alert" *ngFor="let erro of errors">
+                    {{ erro }}
+                </div>
+
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>ID:</label>
+                    <input type="text" [ngModel]="cliente.id" name="id" class="form-control" disabled="true" />
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Data Cadastro:</label>
+                    <input type="text" class="form-control" name="dataCadastro" [ngModel]="cliente.dataCadastro"
+                        disabled="true" />
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Nome: *</label>
+                    <input type="text" class="form-control" [(ngModel)]="cliente.nome" name="nome" />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>CPF: *</label>
+                    <input type="text" class="form-control" [(ngModel)]="cliente.cpf" name="cpf" />
+                </div>
             </div>
         </div>
 
-        <div class="col-md-6">
-            <div class="form-group">
-                <label>Data Cadastro:</label>
-                <input type="text" name="" id="" class="form-control" disabled>
+        <div class="row">
+            <div class="col-md-3">
+                <button type="submit" class="btn btn-success" *ngIf="!cliente.id">
+                    <i class="fa fa-save"></i> Salvar
+                </button>
             </div>
-        </div>
 
-    </div>
-    <div class="row">
-        <div class="col-md-6">
-            <div class="form-group">
-                <label>Nome: *</label>
-                <input type="text" name="" id="" class="form-control">
-            </div>
         </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <label>CPF: *</label>
-                <input type="text" name="" id="" class="form-control">
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-3">
-            <button type="submit" class="btn btn-success">
-                <i class="fa fa-save" ></i> Salvar
-            </button>
-            
-        </div>
-    </div>
-</form>
-
+    </form>
 </div>
