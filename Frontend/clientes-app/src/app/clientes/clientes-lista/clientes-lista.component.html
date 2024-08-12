@@ -18,7 +18,7 @@
 
     <div class="row">
         <div class="col-md-2">
-            <button class="btn btn-warning" (click)="novoCadastro()" >
+            <button class="btn btn-warning" (click)="novoCadastro()">
                 <i class="fa fa-plus"></i> Novo
             </button>
         </div>
@@ -43,12 +43,11 @@
                         <td>{{ cliente.cpf }}</td>
                         <td>{{ cliente.dataCadastro }}</td>
                         <td>
-                            <button class="btn btn-primary" routerLink="/clientes/form/{{ cliente.id }}">
+                            <button class="btn btn-primary" routerLink="/clientes-form/{{ cliente.id }}">
                                 <i class="fa fa-edit"></i>
                             </button>
 
-                            <button class="btn btn-danger" (click)="preparaDelecao(cliente)" data-toggle="modal"
-                                data-target="#modalDelecao">
+                            <button class="btn btn-danger ml-2" (click)="preparaDelecao(cliente)" data-toggle="modal"data-target="#modalDelecao">
                                 <i class="fa fa-trash"></i>
                             </button>
 
@@ -67,14 +66,13 @@
                 </div>
 
                 <div class="modal-body" *ngIf="clienteSelecionado">
-                    Confirma a deleção do(a) Cliente {{ clienteSelecionado.nome }}?
+                    Confirma a deleção do(a) Cliente: <strong> {{ clienteSelecionado.nome }}</strong>?
                 </div>
 
-                <!-- <div class="modal-footer">
-                    <button class="btn btn-success" (click)="deletarCliente()"  
-                            data-dismiss="modal">Confirmar</button>
-                    <button class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                </div> -->
+                <div class="modal-footer">
+                    <button class="btn btn-success " (click)="deletarCliente()" data-dismiss="modal">Confirmar</button>
+                    <button class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                </div>
             </div>
         </div>
     </div>
