@@ -1,15 +1,17 @@
-<h1 class="mt-4">Clientes</h1>
-<ol class="breadcrumb mb-4">
-    <li class="breadcrumb-item active">Consulta</li>
+<h1 class="mt-4">Clientes</h1> <!-- Título da página com margem superior (mt-4) -->
+<ol class="breadcrumb mb-4"> <!-- Cria uma barra de navegação breadcrumb com margem inferior (mb-4) -->
+    <li class="breadcrumb-item active">Consulta</li> <!-- Indica a seção atual como "Consulta" -->
 </ol>
-<div class="container">
+
+<div class="container"> <!-- Contêiner para centralizar e organizar o conteúdo -->
     <div class="row">
         <div class="col-md-12">
-
+            <!-- Exibe uma mensagem de sucesso se a variável mensagemSucesso estiver definida -->
             <div class="alert alert-success" role="alert" *ngIf="mensagemSucesso">
                 {{ mensagemSucesso }}
             </div>
 
+            <!-- Exibe uma mensagem de erro se a variável mensagemErro estiver definida -->
             <div class="alert alert-danger" role="alert" *ngIf="mensagemErro">
                 {{ mensagemErro }}
             </div>
@@ -18,14 +20,18 @@
 
     <div class="row">
         <div class="col-md-2">
+            <!-- Botão para iniciar um novo cadastro, acionando a função novoCadastro() -->
             <button class="btn btn-warning" (click)="novoCadastro()">
                 <i class="fa fa-plus"></i> Novo
             </button>
         </div>
     </div>
+    
     <br />
+    
     <div class="row">
         <div class="col-md-12">
+            <!-- Tabela para exibir a lista de clientes -->
             <table class="table table-condensed table-hover">
                 <thead>
                     <tr>
@@ -33,24 +39,26 @@
                         <th>Nome</th>
                         <th>CPF</th>
                         <th>Data Cadastro</th>
-                        <th></th>
+                        <th></th> <!-- Coluna vazia para os botões de ação -->
                     </tr>
                 </thead>
                 <tbody>
+                    <!-- Loop através da lista de clientes para exibir cada cliente em uma linha da tabela -->
                     <tr *ngFor="let cliente of clientes">
-                        <td>{{ cliente.id }}</td>
-                        <td>{{ cliente.nome }}</td>
-                        <td>{{ cliente.cpf }}</td>
-                        <td>{{ cliente.dataCadastro }}</td>
+                        <td>{{ cliente.id }}</td> <!-- Exibe o ID do cliente -->
+                        <td>{{ cliente.nome }}</td> <!-- Exibe o nome do cliente -->
+                        <td>{{ cliente.cpf }}</td> <!-- Exibe o CPF do cliente -->
+                        <td>{{ cliente.dataCadastro }}</td> <!-- Exibe a data de cadastro do cliente -->
                         <td>
+                            <!-- Botão para editar o cliente, navegando para o formulário de clientes com o ID do cliente -->
                             <button class="btn btn-primary" routerLink="/clientes-form/{{ cliente.id }}">
                                 <i class="fa fa-edit"></i>
                             </button>
 
-                            <button class="btn btn-danger ml-2" (click)="preparaDelecao(cliente)" data-toggle="modal"data-target="#modalDelecao">
+                            <!-- Botão para preparar a deleção do cliente, abrindo um modal de confirmação -->
+                            <button class="btn btn-danger ml-2" (click)="preparaDelecao(cliente)" data-toggle="modal" data-target="#modalDelecao">
                                 <i class="fa fa-trash"></i>
                             </button>
-
                         </td>
                     </tr>
                 </tbody>
@@ -58,6 +66,7 @@
         </div>
     </div>
 
+    <!-- Modal de confirmação de deleção -->
     <div id="modalDelecao" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -66,11 +75,14 @@
                 </div>
 
                 <div class="modal-body" *ngIf="clienteSelecionado">
-                    Confirma a deleção do(a) Cliente: <strong> {{ clienteSelecionado.nome }}</strong>?
+                    <!-- Exibe a mensagem de confirmação de deleção com o nome do cliente selecionado -->
+                    Confirma a deleção do(a) Cliente: <strong>{{ clienteSelecionado.nome }}</strong>?
                 </div>
 
                 <div class="modal-footer">
-                    <button class="btn btn-success " (click)="deletarCliente()" data-dismiss="modal">Confirmar</button>
+                    <!-- Botão para confirmar a deleção do cliente -->
+                    <button class="btn btn-success" (click)="deletarCliente()" data-dismiss="modal">Confirmar</button>
+                    <!-- Botão para cancelar a deleção e fechar o modal -->
                     <button class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                 </div>
             </div>

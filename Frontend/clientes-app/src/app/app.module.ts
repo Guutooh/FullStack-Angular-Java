@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,15 +9,22 @@ import { HomeComponent } from './home/home.component';
 import { TemplateModule } from './template/template.module';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    AppRoutingModule,
-    TemplateModule,
-    ClientesModule,
+  declarations: [
+    AppComponent,  // Declaração do componente raiz da aplicação
+    HomeComponent  // Declaração do componente Home
   ],
-  providers: [ClientesService],
-  bootstrap: [AppComponent],
+  imports: [
+    BrowserModule,  // Importa o módulo necessário para executar a aplicação Angular em um navegador
+    HttpClientModule,  // Importa o módulo para realizar requisições HTTP
+    AppRoutingModule,  // Importa o módulo de roteamento da aplicação
+    TemplateModule,  // Importa o módulo de template que contém Navbar e Sidebar
+    ClientesModule,  // Importa o módulo de clientes que gerencia funcionalidades relacionadas a clientes
+  ],
+  providers: [
+    ClientesService  // Declaração do serviço ClientesService como um provedor disponível em toda a aplicação
+  ],
+  bootstrap: [
+    AppComponent  // Especifica o componente raiz que Angular deve carregar e bootstrap ao iniciar a aplicação
+  ],
 })
 export class AppModule {}

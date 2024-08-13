@@ -1,68 +1,71 @@
-<h1 class="mt-4">Clientes</h1>
-<ol class="breadcrumb mb-4">
-    <li class="breadcrumb-item active">{{ cliente.id ? 'Edição' : 'Cadastro' }}</li>
+<h1 class="mt-4">Clientes</h1> <!-- Título da página com margem superior (mt-4) -->
+<ol class="breadcrumb mb-4"> <!-- Cria uma barra de navegação breadcrumb com margem inferior (mb-4) -->
+    <li class="breadcrumb-item active">{{ cliente.id ? 'Edição' : 'Cadastro' }}</li> <!-- Exibe "Edição" se cliente.id existir, caso contrário, exibe "Cadastro" -->
 </ol>
-<div class="container">
-    <form #clienteForm="ngForm" (ngSubmit)="onSubmit()">
+<div class="container"> <!-- Contêiner para centralizar e organizar o conteúdo -->
+    <form #clienteForm="ngForm" (ngSubmit)="onSubmit()"> <!-- Início do formulário Angular -->
 
+        <!-- Alerta de sucesso ou erro -->
         <div class="row">
             <div class="col-md-12">
-                <div class="alert alert-success" role="alert" *ngIf="success == true">
+                <div class="alert alert-success" role="alert" *ngIf="success == true"> <!-- Exibe mensagem de sucesso se a variável "success" for true -->
                     Cliente salvo/atualizado com sucesso!
                 </div>
-                <div class="alert alert-danger" role="alert" *ngFor="let erro of errors">
+                <div class="alert alert-danger" role="alert" *ngFor="let erro of errors"> <!-- Exibe mensagens de erro iterando sobre a lista "errors" -->
                     {{ erro }}
                 </div>
             </div>
         </div>
 
+        <!-- Campos de ID e Data de Cadastro são exibidos apenas se cliente.id existir -->
         <div class="row" *ngIf="cliente.id">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label>ID:</label>
-                    <input type="text" [ngModel]="cliente.id" name="id" class="form-control" disabled="true" />
+                    <label>ID:</label> <!-- Rótulo para o campo de entrada ID -->
+                    <input type="text" [ngModel]="cliente.id" name="id" class="form-control" disabled="true" /> <!-- Campo de texto desabilitado, vinculado ao modelo Angular -->
                 </div>
             </div>
 
             <div class="col-md-6">
                 <div class="form-group">
-                    <label>Data Cadastro:</label>
+                    <label>Data Cadastro:</label> <!-- Rótulo para o campo de data de cadastro -->
                     <input type="text" class="form-control" name="dataCadastro" [ngModel]="cliente.dataCadastro"
-                        disabled="true" />
+                        disabled="true" /> <!-- Campo de texto desabilitado, vinculado ao modelo Angular -->
                 </div>
             </div>
         </div>
 
+        <!-- Campos editáveis para Nome e CPF -->
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label>Nome: *</label>
-                    <input type="text" class="form-control" [(ngModel)]="cliente.nome" name="nome" />
+                    <label>Nome: *</label> <!-- Rótulo do campo "Nome" com indicação de obrigatório -->
+                    <input type="text" class="form-control" [(ngModel)]="cliente.nome" name="nome" /> <!-- Campo de texto vinculado ao modelo Angular para o nome do cliente -->
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label>CPF: *</label>
-                    <input type="text" class="form-control" [(ngModel)]="cliente.cpf" name="cpf" />
+                    <label>CPF: *</label> <!-- Rótulo do campo "CPF" com indicação de obrigatório -->
+                    <input type="text" class="form-control" [(ngModel)]="cliente.cpf" name="cpf" /> <!-- Campo de texto vinculado ao modelo Angular para o CPF do cliente -->
                 </div>
             </div>
         </div>
 
+        <!-- Botões de ação -->
         <div class="row">
             <div class="col-md-3">
-                <button type="submit" class="btn btn-success" *ngIf="!cliente.id">
+                <button type="submit" class="btn btn-success" *ngIf="!cliente.id"> <!-- Botão "Salvar" visível apenas se cliente.id não existir -->
                     <i class="fa fa-save"></i> Salvar
                 </button>
 
-                <button type="submit" class="btn btn-primary" *ngIf="cliente.id">
+                <button type="submit" class="btn btn-primary" *ngIf="cliente.id"> <!-- Botão "Atualizar" visível apenas se cliente.id existir -->
                     <i class="fa fa-sync-alt"></i> Atualizar
                 </button>
 
-                <button type="button" class="btn btn-danger ml-2" (click)="voltarParaListagem()">
+                <button type="button" class="btn btn-danger ml-2" (click)="voltarParaListagem()"> <!-- Botão "Voltar" que aciona a função voltarParaListagem() -->
                     <i class="fa fa-arrow-alt-circle-left"></i> Voltar
                 </button>
             </div>
-
         </div>
     </form>
 </div>

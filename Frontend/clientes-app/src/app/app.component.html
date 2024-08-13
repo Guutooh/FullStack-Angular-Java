@@ -1,24 +1,46 @@
 <app-navbar></app-navbar>
+<!-- Componente Navbar -->
+<!-- Este é o componente de barra de navegação (navbar), que é inserido no topo da página usando a tag <app-navbar>. -->
 
 <div id="layoutSidenav">
-
+    <!-- Container para o layout que inclui a sidebar e o conteúdo principal -->
+    
     <app-sidebar></app-sidebar>
+    <!-- Componente Sidebar -->
+    <!-- Este é o componente de barra lateral (sidebar), inserido ao lado da página usando a tag <app-sidebar>. -->
 
     <div id="layoutSidenav_content">
+        <!-- Container para o conteúdo principal ao lado da sidebar -->
+        
         <main>
+            <!-- Elemento principal para o conteúdo dinâmico da página -->
 
             <div class="container-fluid">
-                <router-outlet> </router-outlet>
+                <!-- Container fluido para o conteúdo, garante que o conteúdo ocupe toda a largura disponível -->
+                <router-outlet></router-outlet>
+                <!-- Ponto de inserção de componentes -->
+                <!-- O <router-outlet> é um placeholder onde os componentes correspondentes às rotas configuradas serão carregados dinamicamente. -->
             </div>
 
             <footer class="py-4 bg-light mt-auto">
+                <!-- Rodapé da página -->
+                <!-- O rodapé tem uma padding vertical de 4 unidades (py-4), um fundo claro (bg-light) e uma margem superior automática (mt-auto), que o empurra para o final da página. -->
+                
                 <div class="container-fluid">
+                    <!-- Container fluido para garantir que o conteúdo do rodapé ocupe toda a largura disponível -->
+
                     <div class="d-flex align-items-center justify-content-between small">
+                        <!-- Flexbox para alinhar o conteúdo do rodapé -->
+                        <!-- "d-flex" aplica o display flex, "align-items-center" alinha verticalmente os itens ao centro, "justify-content-between" distribui os itens para que fiquem nas extremidades opostas, e "small" aplica um tamanho de texto pequeno. -->
+                        
                         <div class="text-muted">Copyright &copy; Meus clientes 2024</div>
+                        <!-- Texto de copyright, com estilo muted para cor suave -->
+
                         <div>
                             <a href="#">Privacy Policy</a>
                             &middot;
                             <a href="#">Terms &amp; Conditions</a>
+                            <!-- Links para a política de privacidade e termos e condições, separados por um ponto mediano (&middot;) -->
                         </div>
                     </div>
                 </div>
