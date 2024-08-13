@@ -1,3 +1,4 @@
+import { ServicoPrestadoService } from './servico-prestado.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
@@ -8,6 +9,7 @@ import { ClientesModule } from './clientes/clientes.module';
 import { HomeComponent } from './home/home.component';
 import { TemplateModule } from './template/template.module';
 import { ServicoPrestadoModule } from './servico-prestado/servico-prestado.module';
+
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ import { ServicoPrestadoModule } from './servico-prestado/servico-prestado.modul
     ServicoPrestadoModule // Importa o módulo de Servicos que gerencia funcionalidades relacionadas a Servicos prestados
   ],
   providers: [
-    ClientesService  // Declaração do serviço ClientesService como um provedor disponível em toda a aplicação
+    ClientesService, // Declaração do serviço ClientesService como um provedor disponível em toda a aplicação
+    ServicoPrestadoService // Declaração do serviço ServicoPrestadoService como um provedor disponível em toda a aplicação
   ],
   bootstrap: [
     AppComponent  // Especifica o componente raiz que Angular deve carregar e bootstrap ao iniciar a aplicação
