@@ -7,6 +7,7 @@ import { ClientesService } from './clientes.service';
 import { ClientesModule } from './clientes/clientes.module';
 import { HomeComponent } from './home/home.component';
 import { TemplateModule } from './template/template.module';
+import { ServicoPrestadoModule } from './servico-prestado/servico-prestado.module';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { TemplateModule } from './template/template.module';
     AppRoutingModule,  // Importa o módulo de roteamento da aplicação
     TemplateModule,  // Importa o módulo de template que contém Navbar e Sidebar
     ClientesModule,  // Importa o módulo de clientes que gerencia funcionalidades relacionadas a clientes
+    ServicoPrestadoModule // Importa o módulo de Servicos que gerencia funcionalidades relacionadas a Servicos prestados
   ],
   providers: [
     ClientesService  // Declaração do serviço ClientesService como um provedor disponível em toda a aplicação
