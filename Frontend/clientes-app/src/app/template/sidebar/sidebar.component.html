@@ -1,50 +1,87 @@
 <div id="layoutSidenav_nav">
-    <!-- Contêiner para a navegação lateral (sidebar) -->
+    <!-- Contêiner para a navegação lateral (sidebar).
+         Este `div` encapsula toda a estrutura da barra lateral de navegação, que inclui os links de navegação
+         e as seções/cabeçalhos que organizam esses links. O `id="layoutSidenav_nav"` é usado para aplicar estilos específicos
+         e para identificar a navegação lateral no layout. -->
+
     <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-        <!-- Elemento de navegação lateral com classes Bootstrap personalizadas -->
+        <!-- Elemento de navegação lateral.
+             A classe `sb-sidenav` é uma classe personalizada que define o estilo geral da barra lateral,
+             enquanto `accordion` permite que a barra lateral tenha comportamentos de expansão e colapso.
+             A classe `sb-sidenav-dark` aplica um tema escuro à barra lateral.
+             O `id="sidenavAccordion"` é utilizado para controlar os elementos colapsáveis da barra lateral. -->
+
         <div class="sb-sidenav-menu">
-            <!-- Contêiner para o menu de navegação dentro da sidebar -->
+            <!-- Contêiner para o menu de navegação dentro da sidebar.
+                 Este `div` agrupa todos os itens de navegação (links) da barra lateral, facilitando o gerenciamento
+                 do layout e estilo dos links. -->
+
             <div class="nav">
-                <!-- Início dos itens de navegação -->
-                
+                <!-- Início dos itens de navegação.
+                     Este `div` agrupa os links de navegação, além de qualquer cabeçalho/seção
+                     que os organize de maneira lógica. -->
+
                 <div class="sb-sidenav-menu-heading">Sistema</div>
-                <!-- Cabeçalho/seção para o grupo de links do sistema -->
-                
+                <!-- Cabeçalho/seção para o grupo de links relacionados ao sistema.
+                     A classe `sb-sidenav-menu-heading` estiliza este texto como um cabeçalho dentro da barra lateral,
+                     geralmente com um tamanho de fonte maior e um estilo que destaca a separação entre seções. -->
+
                 <a class="nav-link" routerLink="/home">
-                    <!-- Link de navegação para a página Home -->
+                    <!-- Link de navegação para a página Home.
+                         A classe `nav-link` aplica estilos básicos de link de navegação, como cor, margem, e comportamento de hover.
+                         O atributo `routerLink="/home"` define a rota Angular para onde este link redireciona. -->
+
                     <div class="sb-nav-link-icon">
                         <i class="fas fa-tachometer-alt"></i>
-                        <!-- Ícone de "tachômetro" para representar a página Home -->
+                        <!-- Ícone de "tachômetro" (usando FontAwesome) para representar a página Home.
+                             O ícone é inserido dentro de um `div` com a classe `sb-nav-link-icon`, que é responsável por alinhar
+                             e estilizar o ícone ao lado do texto do link. -->
                     </div>
                     Home
+                    <!-- Texto exibido ao lado do ícone, representando o link para a página inicial da aplicação. -->
                 </a>
-                
+
                 <div class="sb-sidenav-menu-heading">Cadastros</div>
-                <!-- Cabeçalho/seção para o grupo de links de cadastros -->
-                
+                <!-- Cabeçalho/seção para o grupo de links relacionados aos cadastros.
+                     Esta seção agrupa os links de navegação para diferentes áreas de cadastro, como clientes e serviços prestados. -->
+
                 <a class="nav-link collapsed" routerLink="/clientes-lista" 
                     data-toggle="collapse" data-target="#collapseLayouts" 
                     aria-expanded="false" aria-controls="collapseLayouts">
-                    <!-- Link de navegação para a página de lista de clientes -->
+                    <!-- Link de navegação para a página de lista de clientes.
+                         A classe `nav-link collapsed` indica que este link pode expandir ou colapsar,
+                         mas por padrão está colapsado. O `routerLink="/clientes-lista"` define a rota Angular
+                         para onde este link redireciona. Os atributos `data-toggle="collapse"` e `data-target="#collapseLayouts"`
+                         são usados para controlar a expansão e colapso do link. O `aria-expanded="false"` indica o estado inicial
+                         (não expandido), e `aria-controls="collapseLayouts"` é usado para acessibilidade, especificando o ID
+                         do elemento controlado por este link. -->
+
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                    <!-- Ícone de "colunas" para representar os cadastros de clientes -->
+                    <!-- Ícone de "colunas" (usando FontAwesome) para representar os cadastros de clientes.
+                         Este ícone ajuda a visualizar rapidamente a funcionalidade do link. -->
                     Clientes
+                    <!-- Texto que acompanha o ícone, indicando que o link leva à página de clientes. -->
                 </a>
 
-                <a class="nav-link collapsed" routerLink="/servico-prestado-form" 
+                <a class="nav-link collapsed" routerLink="servico-prestado-listagem" 
                     data-toggle="collapse" data-target="#collapseLayouts" 
                     aria-expanded="false" aria-controls="collapseLayouts">
-                    <!-- Link de navegação para a página de serviços prestados -->
+                    <!-- Link de navegação para a página de lista de serviços prestados.
+                         Este link é estruturado de maneira semelhante ao anterior, com as mesmas classes e atributos
+                         para controle de colapso e acessibilidade. O `routerLink="servico-prestado-listagem"` define
+                         a rota Angular para a lista de serviços prestados. -->
+
                     <div class="sb-nav-link-icon"><i class="fas fa-address-card"></i></div>
-                    <!-- Ícone de "cartão de endereço" para representar os serviços prestados -->
+                    <!-- Ícone de "cartão de endereço" (usando FontAwesome) para representar os serviços prestados.
+                         Este ícone fornece uma pista visual sobre a função do link. -->
                     Serviços Prestados
+                    <!-- Texto que acompanha o ícone, indicando que o link leva à página de serviços prestados. -->
                 </a>
 
                 <div class="sb-sidenav-menu-heading">Logout</div>
-                <!-- Cabeçalho/seção para a opção de logout -->
-              
+                <!-- Cabeçalho/seção para a opção de logout.
+                     Esta seção indica onde o usuário pode encontrar a opção para sair do sistema. -->
             </div>
         </div>
-      
     </nav>
 </div>

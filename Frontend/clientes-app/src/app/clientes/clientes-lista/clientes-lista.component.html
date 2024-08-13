@@ -1,18 +1,29 @@
-<h1 class="mt-4">Clientes</h1> <!-- Título da página com margem superior (mt-4) -->
-<ol class="breadcrumb mb-4"> <!-- Cria uma barra de navegação breadcrumb com margem inferior (mb-4) -->
-    <li class="breadcrumb-item active">Consulta</li> <!-- Indica a seção atual como "Consulta" -->
+<h1 class="mt-4">Clientes</h1>
+<!-- Título da página com margem superior (mt-4) para adicionar espaçamento acima do título.
+     Este título indica que a página está relacionada ao gerenciamento ou consulta de clientes. -->
+
+<ol class="breadcrumb mb-4">
+    <!-- Cria uma barra de navegação breadcrumb com margem inferior (mb-4) para orientar o usuário sobre a localização atual na aplicação. -->
+    <li class="breadcrumb-item active">Consulta</li>
+    <!-- Indica que o usuário está na seção "Consulta". A classe `breadcrumb-item active` estiliza este item para destacá-lo dos demais. -->
 </ol>
 
-<div class="container"> <!-- Contêiner para centralizar e organizar o conteúdo -->
+<div class="container">
+    <!-- Contêiner para centralizar e organizar o conteúdo da página, garantindo um layout responsivo. -->
+
     <div class="row">
         <div class="col-md-12">
-            <!-- Exibe uma mensagem de sucesso se a variável mensagemSucesso estiver definida -->
+            <!-- Coluna que ocupa toda a largura da linha para exibir mensagens de feedback. -->
+
             <div class="alert alert-success" role="alert" *ngIf="mensagemSucesso">
+                <!-- Exibe uma mensagem de sucesso se a variável `mensagemSucesso` estiver definida.
+                     A classe `alert alert-success` aplica o estilo de alerta de sucesso (verde) do Bootstrap. -->
                 {{ mensagemSucesso }}
             </div>
 
-            <!-- Exibe uma mensagem de erro se a variável mensagemErro estiver definida -->
             <div class="alert alert-danger" role="alert" *ngIf="mensagemErro">
+                <!-- Exibe uma mensagem de erro se a variável `mensagemErro` estiver definida.
+                     A classe `alert alert-danger` aplica o estilo de alerta de erro (vermelho) do Bootstrap. -->
                 {{ mensagemErro }}
             </div>
         </div>
@@ -20,44 +31,74 @@
 
     <div class="row">
         <div class="col-md-2">
-            <!-- Botão para iniciar um novo cadastro, acionando a função novoCadastro() -->
+            <!-- Coluna que ocupa 2 unidades de largura (em um grid de 12) para o botão de novo cadastro. -->
+
             <button class="btn btn-warning" (click)="novoCadastro()">
+                <!-- Botão para iniciar um novo cadastro. A classe `btn btn-warning` aplica o estilo de botão de alerta (amarelo).
+                     O evento `(click)` chama a função `novoCadastro()` no componente Angular. -->
                 <i class="fa fa-plus"></i> Novo
+                <!-- Ícone de adição (usando FontAwesome) seguido pelo texto "Novo", indicando que este botão é para criar um novo registro. -->
             </button>
         </div>
     </div>
     
     <br />
+    <!-- Linha em branco para adicionar espaçamento vertical entre o botão de novo cadastro e a tabela de clientes. -->
     
     <div class="row">
         <div class="col-md-12">
-            <!-- Tabela para exibir a lista de clientes -->
+            <!-- Coluna que ocupa toda a largura da linha para exibir a tabela de clientes. -->
+
             <table class="table table-condensed table-hover">
+                <!-- Tabela para exibir a lista de clientes.
+                     A classe `table-condensed` aplica um estilo mais compacto à tabela, e `table-hover` destaca as linhas ao passar o mouse sobre elas. -->
                 <thead>
                     <tr>
                         <th>ID</th>
+                        <!-- Cabeçalho da coluna que indica que esta coluna exibirá os IDs dos clientes. -->
                         <th>Nome</th>
+                        <!-- Cabeçalho da coluna para os nomes dos clientes. -->
                         <th>CPF</th>
+                        <!-- Cabeçalho da coluna para os CPFs dos clientes. -->
                         <th>Data Cadastro</th>
-                        <th></th> <!-- Coluna vazia para os botões de ação -->
+                        <!-- Cabeçalho da coluna para as datas de cadastro dos clientes. -->
+                        <th></th>
+                        <!-- Coluna vazia para alocar os botões de ação (editar e excluir). -->
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Loop através da lista de clientes para exibir cada cliente em uma linha da tabela -->
+                    <!-- Corpo da tabela onde os dados dos clientes serão exibidos. -->
+
                     <tr *ngFor="let cliente of clientes">
-                        <td>{{ cliente.id }}</td> <!-- Exibe o ID do cliente -->
-                        <td>{{ cliente.nome }}</td> <!-- Exibe o nome do cliente -->
-                        <td>{{ cliente.cpf }}</td> <!-- Exibe o CPF do cliente -->
-                        <td>{{ cliente.dataCadastro }}</td> <!-- Exibe a data de cadastro do cliente -->
+                        <!-- Loop que itera sobre a lista de clientes (`clientes`), gerando uma linha na tabela para cada cliente.
+                             A diretiva `*ngFor` do Angular permite a criação dinâmica das linhas da tabela com base nos dados. -->
+
+                        <td>{{ cliente.id }}</td>
+                        <!-- Exibe o ID do cliente. -->
+                        <td>{{ cliente.nome }}</td>
+                        <!-- Exibe o nome do cliente. -->
+                        <td>{{ cliente.cpf }}</td>
+                        <!-- Exibe o CPF do cliente. -->
+                        <td>{{ cliente.dataCadastro }}</td>
+                        <!-- Exibe a data de cadastro do cliente. -->
+
                         <td>
-                            <!-- Botão para editar o cliente, navegando para o formulário de clientes com o ID do cliente -->
+                            <!-- Coluna para os botões de ação (editar e excluir) para cada cliente. -->
+
                             <button class="btn btn-primary" routerLink="/clientes-form/{{ cliente.id }}">
+                                <!-- Botão para editar o cliente, que navega para o formulário de edição de cliente com o ID do cliente.
+                                     A classe `btn btn-primary` aplica o estilo de botão principal (azul). -->
                                 <i class="fa fa-edit"></i>
+                                <!-- Ícone de edição (usando FontAwesome) no botão. -->
                             </button>
 
-                            <!-- Botão para preparar a deleção do cliente, abrindo um modal de confirmação -->
                             <button class="btn btn-danger ml-2" (click)="preparaDelecao(cliente)" data-toggle="modal" data-target="#modalDelecao">
+                                <!-- Botão para preparar a deleção do cliente, que abre um modal de confirmação.
+                                     A classe `btn btn-danger` aplica o estilo de botão de alerta (vermelho).
+                                     O evento `(click)` chama a função `preparaDelecao(cliente)` no componente Angular, passando o cliente como argumento.
+                                     O atributo `data-toggle="modal"` ativa o modal de deleção, e `data-target="#modalDelecao"` especifica o ID do modal a ser aberto. -->
                                 <i class="fa fa-trash"></i>
+                                <!-- Ícone de lixeira (usando FontAwesome) no botão, indicando a ação de exclusão. -->
                             </button>
                         </td>
                     </tr>
@@ -66,24 +107,40 @@
         </div>
     </div>
 
-    <!-- Modal de confirmação de deleção -->
     <div id="modalDelecao" class="modal fade" role="dialog">
+        <!-- Modal de confirmação de deleção.
+             `id="modalDelecao"` define um identificador único para o modal, usado para referenciá-lo no código.
+             A classe `modal fade` aplica os estilos do Bootstrap para modais, e `role="dialog"` define o papel do modal como uma caixa de diálogo. -->
         <div class="modal-dialog">
+            <!-- Define o layout do modal como uma caixa de diálogo padrão. -->
+
             <div class="modal-content">
+                <!-- Define o conteúdo do modal. -->
+
                 <div class="modal-header">
+                    <!-- Cabeçalho do modal, onde normalmente fica o título. -->
                     <h4>Confirmação</h4>
+                    <!-- Título do modal, indicando que este é um modal de confirmação. -->
                 </div>
 
                 <div class="modal-body" *ngIf="clienteSelecionado">
-                    <!-- Exibe a mensagem de confirmação de deleção com o nome do cliente selecionado -->
+                    <!-- Corpo do modal que exibe a mensagem de confirmação.
+                         O conteúdo só será exibido se houver um cliente selecionado (`*ngIf="clienteSelecionado"`). -->
                     Confirma a deleção do(a) Cliente: <strong>{{ clienteSelecionado.nome }}</strong>?
+                    <!-- Mensagem que pede a confirmação da deleção, exibindo o nome do cliente selecionado em negrito. -->
                 </div>
 
                 <div class="modal-footer">
-                    <!-- Botão para confirmar a deleção do cliente -->
+                    <!-- Rodapé do modal, onde ficam os botões de ação. -->
+
                     <button class="btn btn-success" (click)="deletarCliente()" data-dismiss="modal">Confirmar</button>
-                    <!-- Botão para cancelar a deleção e fechar o modal -->
+                    <!-- Botão para confirmar a deleção do cliente. A classe `btn btn-success` aplica o estilo de botão de sucesso (verde).
+                         O evento `(click)` chama a função `deletarCliente()` no componente Angular para realizar a exclusão.
+                         O atributo `data-dismiss="modal"` fecha o modal após a ação. -->
+
                     <button class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <!-- Botão para cancelar a deleção e fechar o modal. A classe `btn btn-secondary` aplica o estilo de botão secundário (cinza).
+                         O atributo `data-dismiss="modal"` fecha o modal quando o botão é clicado. -->
                 </div>
             </div>
         </div>

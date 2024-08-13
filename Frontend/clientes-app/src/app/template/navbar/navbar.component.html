@@ -1,11 +1,26 @@
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-    <!-- Elemento de navegação principal -->
+    <!-- Elemento de navegação principal (navbar).
+         A classe `sb-topnav` é personalizada para a integração com o layout específico.
+         `navbar` é uma classe do Bootstrap que estiliza este elemento como uma barra de navegação.
+         `navbar-expand` faz com que a barra de navegação se expanda em telas maiores.
+         `navbar-dark` aplica um tema escuro à navbar, enquanto `bg-dark` define a cor de fundo como escura. -->
+
     <a class="navbar-brand" href="#">Meus Clientes</a>
-    <!-- Título da barra de navegação (nome da marca) -->
-    
+    <!-- Título da barra de navegação que serve como a marca ou nome do sistema.
+         A classe `navbar-brand` estiliza o texto de forma destacada, representando o nome da aplicação.
+         O `href="#"` indica que, por enquanto, o link não redireciona para outra página. -->
+
     <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#">
-        <!-- Botão para alternar a exibição da barra lateral (sidebar) -->
+        <!-- Botão para alternar a exibição da barra lateral (sidebar).
+             A classe `btn` aplica o estilo de botão do Bootstrap.
+             `btn-link` faz com que o botão se pareça com um link (texto sem bordas e com um estilo simples).
+             `btn-sm` torna o botão menor. As classes `order-1 order-lg-0` controlam a ordem de exibição do botão,
+             colocando-o em uma posição diferente em telas menores e maiores. O `id="sidebarToggle"` é usado
+             para associar este botão ao código JavaScript que controla a exibição da sidebar.
+             O `href="#"` é um placeholder, indicando que este botão não redireciona, mas apenas ativa uma ação. -->
+
         <i class="fas fa-bars"></i>
-        <!-- Ícone de "menu" (três barras horizontais) que representa o botão do menu -->
+        <!-- Ícone de "menu" (três barras horizontais) que representa o botão do menu.
+             Este ícone é inserido usando FontAwesome, uma biblioteca popular de ícones. -->
     </button>
 </nav>

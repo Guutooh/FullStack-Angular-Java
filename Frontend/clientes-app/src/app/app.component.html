@@ -1,51 +1,71 @@
 <app-navbar></app-navbar>
 <!-- Componente Navbar -->
-<!-- Este é o componente de barra de navegação (navbar), que é inserido no topo da página usando a tag <app-navbar>. -->
+<!-- Este é o componente de barra de navegação (navbar), que é inserido no topo da página usando a tag <app-navbar>.
+     O <app-navbar> representa um componente Angular personalizado que encapsula toda a lógica e estilo da barra de navegação,
+     permitindo sua reutilização em outras partes da aplicação. -->
 
 <div id="layoutSidenav">
-    <!-- Container para o layout que inclui a sidebar e o conteúdo principal -->
-    
+    <!-- Container para o layout principal que inclui a sidebar e o conteúdo principal da página.
+         O layout é dividido em duas seções principais: a sidebar e o conteúdo principal. -->
+
     <app-sidebar></app-sidebar>
     <!-- Componente Sidebar -->
-    <!-- Este é o componente de barra lateral (sidebar), inserido ao lado da página usando a tag <app-sidebar>. -->
+    <!-- Este é o componente de barra lateral (sidebar), que é inserido ao lado da página usando a tag <app-sidebar>.
+         O <app-sidebar> representa um componente Angular personalizado que encapsula a lógica e estilo da barra lateral,
+         permitindo sua reutilização em diferentes partes da aplicação. A sidebar normalmente contém links de navegação
+         para diferentes seções da aplicação. -->
 
     <div id="layoutSidenav_content">
-        <!-- Container para o conteúdo principal ao lado da sidebar -->
-        
+        <!-- Container para o conteúdo principal da página, posicionado ao lado da sidebar.
+             O conteúdo dentro deste container será exibido ao lado da sidebar, ocupando o espaço restante na tela. -->
+
         <main>
             <!-- Elemento principal para o conteúdo dinâmico da página -->
+            <!-- A tag <main> é usada para indicar o conteúdo principal da página, que muda dinamicamente com base na navegação do usuário.
+                 Este elemento é semanticamente correto para encapsular o conteúdo principal de um documento HTML. -->
 
             <div class="container-fluid">
-                <!-- Container fluido para o conteúdo, garante que o conteúdo ocupe toda a largura disponível -->
+                <!-- Container fluido para o conteúdo, garantindo que o conteúdo ocupe toda a largura disponível na tela,
+                     ajustando-se ao tamanho da tela em diferentes dispositivos. -->
+
                 <router-outlet></router-outlet>
                 <!-- Ponto de inserção de componentes -->
-                <!-- O <router-outlet> é um placeholder onde os componentes correspondentes às rotas configuradas serão carregados dinamicamente. -->
+                <!-- O <router-outlet> é um placeholder Angular onde os componentes correspondentes às rotas configuradas são carregados dinamicamente.
+                     Quando o usuário navega para uma nova rota, o componente associado a essa rota é renderizado dentro deste <router-outlet>. -->
             </div>
 
             <footer class="py-4 bg-light mt-auto">
                 <!-- Rodapé da página -->
-                <!-- O rodapé tem uma padding vertical de 4 unidades (py-4), um fundo claro (bg-light) e uma margem superior automática (mt-auto), que o empurra para o final da página. -->
-                
+                <!-- O rodapé da página é estilizado com padding vertical de 4 unidades (py-4), um fundo claro (bg-light),
+                     e uma margem superior automática (mt-auto) que faz com que o rodapé seja empurrado para o final da página.
+                     Isso garante que o rodapé fique na parte inferior da tela, independentemente do conteúdo acima. -->
+
                 <div class="container-fluid">
-                    <!-- Container fluido para garantir que o conteúdo do rodapé ocupe toda a largura disponível -->
+                    <!-- Container fluido para o rodapé, garantindo que seu conteúdo ocupe toda a largura disponível na tela. -->
 
                     <div class="d-flex align-items-center justify-content-between small">
                         <!-- Flexbox para alinhar o conteúdo do rodapé -->
-                        <!-- "d-flex" aplica o display flex, "align-items-center" alinha verticalmente os itens ao centro, "justify-content-between" distribui os itens para que fiquem nas extremidades opostas, e "small" aplica um tamanho de texto pequeno. -->
-                        
+                        <!-- A classe `d-flex` aplica display flex, `align-items-center` alinha verticalmente os itens ao centro,
+                             `justify-content-between` distribui os itens para que fiquem nas extremidades opostas,
+                             e `small` aplica um tamanho de texto reduzido. -->
+
                         <div class="text-muted">Copyright &copy; Meus clientes 2024</div>
-                        <!-- Texto de copyright, com estilo muted para cor suave -->
+                        <!-- Texto de copyright, com estilo `text-muted` para dar uma cor mais suave e menos destacada. -->
 
                         <div>
+                            <!-- Div que agrupa os links de política de privacidade e termos e condições. -->
                             <a href="#">Privacy Policy</a>
+                            <!-- Link para a política de privacidade da aplicação, estilizado para combinar com o rodapé. -->
+
                             &middot;
+                            <!-- Ponto mediano (&middot;) utilizado como separador visual entre os links. -->
+
                             <a href="#">Terms &amp; Conditions</a>
-                            <!-- Links para a política de privacidade e termos e condições, separados por um ponto mediano (&middot;) -->
+                            <!-- Link para os termos e condições da aplicação, estilizado para combinar com o rodapé. -->
                         </div>
                     </div>
                 </div>
             </footer>
-            
         </main>
     </div>
 </div>
