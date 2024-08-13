@@ -27,7 +27,7 @@ public class ServicoPrestado {
     private BigDecimal valor;
 
     @Column
-    @JsonFormat(pattern = "dd/MM/yyyy")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private LocalDate data;
 
 }
