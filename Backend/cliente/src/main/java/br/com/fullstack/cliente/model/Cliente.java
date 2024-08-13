@@ -23,7 +23,7 @@ public class Cliente {
 
     @Column(nullable = false, length = 11)
     @NotNull(message = "{campo.cpf.obrigatorio}")
-   // @CPF(message = "{campo.cpf.invalido}")
+    @CPF(message = "{campo.cpf.invalido}")
     private String cpf;
 
 
