@@ -1,115 +1,121 @@
+<!-- Título principal da página, com classe Bootstrap 'mt-4' que aplica uma margem superior de tamanho 4 (aproximadamente 1.5rem) -->
 <h1 class="mt-4">Clientes</h1>
-<!-- Título da página com margem superior (mt-4) para adicionar espaçamento acima do título.
-     Este título indica que a página está relacionada ao gerenciamento de clientes. -->
 
+<!-- Início de uma barra de navegação (breadcrumb) que auxilia na navegação entre as páginas, com classe 'mb-4' para aplicar uma margem inferior -->
 <ol class="breadcrumb mb-4">
-    <!-- Cria uma barra de navegação breadcrumb com margem inferior (mb-4) para orientar o usuário sobre sua localização na aplicação. -->
+    <!-- Item de breadcrumb ativo, indicado pela classe 'active', que ajusta o estilo para destacar o item atual.
+         Utiliza Angular interpolation {{}} para determinar dinamicamente se o texto deve ser 'Edição' ou 'Cadastro',
+         com base na existência do atributo 'id' do objeto cliente. -->
     <li class="breadcrumb-item active">{{ cliente.id ? 'Edição' : 'Cadastro' }}</li>
-    <!-- Exibe "Edição" se cliente.id existir, indicando que o usuário está editando um cliente existente.
-         Caso contrário, exibe "Cadastro", indicando que o usuário está criando um novo cliente. -->
 </ol>
 
+<!-- Div que age como um contêiner centralizado e responsivo, controlando o layout do conteúdo interno da página -->
 <div class="container">
-    <!-- Contêiner principal que centraliza e organiza o conteúdo da página, garantindo um layout responsivo e estruturado. -->
-
+    <!-- Início do formulário Angular, associado ao template form 'clienteForm' com a diretiva '#clienteForm="ngForm"',
+         que é vinculada ao modelo de dados Angular e à função 'onSubmit()' que será chamada ao enviar o formulário -->
     <form #clienteForm="ngForm" (ngSubmit)="onSubmit()">
-        <!-- Início do formulário Angular, vinculado ao objeto `ngForm` para acessar o estado do formulário e realizar validações.
-             O evento `(ngSubmit)` chama o método `onSubmit()` no componente Angular ao submeter o formulário. -->
 
-        <!-- Alerta de sucesso ou erro -->
+        <!-- Linha de grid Bootstrap para organizar o layout de colunas. A classe 'row' cria uma linha horizontal para as colunas dentro dela. -->
         <div class="row">
-            <!-- Linha para agrupar os alertas de sucesso ou erro. -->
+            <!-- Coluna que ocupa toda a largura disponível na linha, utilizando 12 unidades do grid do Bootstrap,
+                 garantindo que os alertas abaixo ocupem toda a largura da página na visualização em desktops -->
             <div class="col-md-12">
-                <!-- Coluna que ocupa toda a largura da linha para exibir as mensagens de feedback. -->
-
+                <!-- Alerta Bootstrap de sucesso, que é exibido somente quando a variável 'success' é verdadeira.
+                     A classe 'alert alert-success' estiliza o alerta com um fundo verde e um estilo de borda específica para mensagens de sucesso.
+                     A diretiva Angular '*ngIf' controla a renderização condicional, exibindo este alerta apenas se 'success == true'. -->
                 <div class="alert alert-success" role="alert" *ngIf="success == true">
-                    <!-- Exibe uma mensagem de sucesso se a variável `success` for verdadeira.
-                         A classe `alert alert-success` aplica o estilo de alerta de sucesso (verde) do Bootstrap. -->
                     Cliente salvo/atualizado com sucesso!
                 </div>
 
+                <!-- Alerta Bootstrap de erro, estilizado com a classe 'alert alert-danger', que aplica um fundo vermelho e bordas para indicar erros.
+                     A diretiva Angular '*ngFor' itera sobre a lista 'errors', exibindo um alerta para cada erro presente na lista. -->
                 <div class="alert alert-danger" role="alert" *ngFor="let erro of errors">
-                    <!-- Exibe mensagens de erro iterando sobre a lista `errors` (caso haja erros).
-                         A classe `alert alert-danger` aplica o estilo de alerta de erro (vermelho) do Bootstrap. -->
                     {{ erro }}
-                    <!-- Exibe cada erro individualmente, usando interpolação Angular para acessar a lista `errors`. -->
                 </div>
             </div>
         </div>
 
-        <!-- Campos de ID e Data de Cadastro são exibidos apenas se cliente.id existir -->
+        <!-- Nova linha de grid Bootstrap. Esta linha contém dois grupos de campos que são exibidos apenas se o cliente já tiver um 'id' definido,
+             o que indica que o cliente está sendo editado e não criado. -->
         <div class="row" *ngIf="cliente.id">
-            <!-- Linha que agrupa os campos de ID e Data de Cadastro, exibidos apenas se cliente.id estiver definido. -->
+            <!-- Primeira coluna desta linha, ocupando metade da largura disponível (6 unidades no grid Bootstrap). -->
             <div class="col-md-6">
-                <!-- Coluna que ocupa metade da largura da linha para o campo ID. -->
+                <!-- Grupo de formulário Bootstrap ('form-group') que contém o campo de entrada de dados para o ID do cliente,
+                     com o rótulo 'ID:' acima do campo de entrada. -->
                 <div class="form-group">
                     <label>ID:</label>
-                    <!-- Rótulo para o campo de entrada ID. -->
+                    <!-- Campo de entrada de texto para o ID do cliente, utilizando 'ngModel' para vinculação de dados unidirecional entre o modelo e a view.
+                         O campo é desativado (disabled="true"), o que impede que o usuário edite o valor do ID,
+                         refletindo que o ID é gerado automaticamente e não deve ser modificado. -->
                     <input type="text" [ngModel]="cliente.id" name="id" class="form-control" disabled="true" />
-                    <!-- Campo de texto para exibir o ID do cliente, desabilitado para evitar edição.
-                         O valor é vinculado ao modelo Angular `cliente.id`. -->
                 </div>
             </div>
 
+            <!-- Segunda coluna, também ocupando metade da largura disponível, destinada ao campo de data de cadastro. -->
             <div class="col-md-6">
-                <!-- Coluna que ocupa metade da largura da linha para o campo Data de Cadastro. -->
+                <!-- Outro grupo de formulário que contém o campo de entrada para a data de cadastro, semelhante ao campo de ID.
+                     A data de cadastro também é exibida em um campo desativado, indicando que não deve ser editada pelo usuário. -->
                 <div class="form-group">
                     <label>Data Cadastro:</label>
-                    <!-- Rótulo para o campo de data de cadastro. -->
-                    <input type="text" class="form-control" name="dataCadastro" [ngModel]="cliente.dataCadastro" disabled="true" />
-                    <!-- Campo de texto para exibir a data de cadastro do cliente, desabilitado para evitar edição.
-                         O valor é vinculado ao modelo Angular `cliente.dataCadastro`. -->
+                    <!-- Campo de entrada de texto para a data de cadastro, vinculado ao modelo 'cliente.dataCadastro'.
+                         A desativação (disabled="true") reflete que essa informação é gerada pelo sistema e não deve ser modificada pelo usuário. -->
+                    <input type="text" class="form-control" name="dataCadastro"
+                           [ngModel]="cliente.dataCadastro" disabled="true" />
                 </div>
             </div>
         </div>
 
-        <!-- Campos editáveis para Nome e CPF -->
+        <!-- Linha contendo os campos editáveis para Nome e CPF, independentemente de o cliente ser novo ou existente. -->
         <div class="row">
-            <!-- Linha que agrupa os campos de Nome e CPF, que são sempre editáveis. -->
+            <!-- Primeira coluna da linha, ocupando metade da largura (6 unidades no grid Bootstrap). -->
             <div class="col-md-6">
-                <!-- Coluna que ocupa metade da largura da linha para o campo Nome. -->
+                <!-- Grupo de formulário que contém o campo de entrada para o nome do cliente,
+                     com o rótulo 'Nome: *', onde o '*' indica que o campo é obrigatório. -->
                 <div class="form-group">
                     <label>Nome: *</label>
-                    <!-- Rótulo do campo "Nome" com indicação de obrigatório (asterisco). -->
-                    <input type="text" class="form-control" [(ngModel)]="cliente.nome" name="nome" />
-                    <!-- Campo de texto vinculado ao modelo Angular `cliente.nome`, permitindo ao usuário editar o nome do cliente. -->
+                    <!-- Campo de entrada de texto para o nome do cliente. Utiliza 'ngModel' para a vinculação de dados,
+                         permitindo que o nome digitado pelo usuário seja automaticamente refletido no modelo Angular.
+                         O atributo 'name="nome"' é utilizado para a identificação do campo dentro do formulário. -->
+                    <input type="text" class="form-control" 
+                           [(ngModel)]="cliente.nome" name="nome" />
                 </div>
             </div>
 
+            <!-- Segunda coluna da linha, também ocupando metade da largura, destinada ao campo de CPF. -->
             <div class="col-md-6">
-                <!-- Coluna que ocupa metade da largura da linha para o campo CPF. -->
+                <!-- Grupo de formulário para o campo CPF, semelhante ao grupo de nome. -->
                 <div class="form-group">
                     <label>CPF: *</label>
-                    <!-- Rótulo do campo "CPF" com indicação de obrigatório (asterisco). -->
-                    <input type="text" class="form-control" [(ngModel)]="cliente.cpf" name="cpf" />
-                    <!-- Campo de texto vinculado ao modelo Angular `cliente.cpf`, permitindo ao usuário editar o CPF do cliente. -->
+                    <!-- Campo de entrada de texto para o CPF do cliente, também vinculado ao modelo Angular.
+                         O campo é obrigatório e espera uma string que será formatada como CPF. -->
+                    <input type="text" class="form-control" 
+                            [(ngModel)]="cliente.cpf" name="cpf" />
                 </div>
             </div>
         </div>
 
-        <!-- Botões de ação -->
+        <!-- Linha contendo os botões de ação disponíveis para o usuário (Salvar, Atualizar, Voltar). -->
         <div class="row">
-            <!-- Linha que agrupa os botões de ação. -->
+            <!-- Coluna com largura de 3 unidades do grid Bootstrap, que alinha os botões à esquerda da página. -->
             <div class="col-md-3">
-                <!-- Coluna que ocupa 3 unidades de largura (em um grid de 12) para os botões de ação. -->
-
+                
+                <!-- Botão de submissão do formulário que exibe 'Salvar' quando o cliente é novo (não tem 'id').
+                     O ícone de disquete indica a ação de salvar, e a classe 'btn btn-success' aplica o estilo verde do Bootstrap. -->
                 <button type="submit" class="btn btn-success" *ngIf="!cliente.id">
-                    <!-- Botão "Salvar" visível apenas se cliente.id não existir, ou seja, em modo de criação. -->
                     <i class="fa fa-save"></i> Salvar
-                    <!-- Ícone de salvar (usando FontAwesome) acompanhado do texto "Salvar". -->
                 </button>
 
+                <!-- Botão de submissão do formulário que exibe 'Atualizar' quando o cliente já existe (tem 'id').
+                     O ícone de sincronização (setas em círculo) indica a ação de atualizar, e a classe 'btn btn-primary' aplica o estilo azul do Bootstrap. -->
                 <button type="submit" class="btn btn-primary" *ngIf="cliente.id">
-                    <!-- Botão "Atualizar" visível apenas se cliente.id existir, ou seja, em modo de edição. -->
                     <i class="fa fa-sync-alt"></i> Atualizar
-                    <!-- Ícone de atualização (usando FontAwesome) acompanhado do texto "Atualizar". -->
                 </button>
 
-                <button type="button" class="btn btn-danger ml-2" (click)="voltarParaListagem()">
-                    <!-- Botão "Voltar" que aciona a função voltarParaListagem() ao ser clicado.
-                         A classe `ml-2` adiciona uma pequena margem à esquerda para espaçar o botão. -->
+                <!-- Botão para voltar à lista de clientes, que não envia o formulário.
+                     O ícone de seta aponta para a esquerda, indicando a ação de voltar.
+                     A classe 'btn btn-danger' aplica o estilo vermelho do Bootstrap, indicando uma ação que cancela ou desfaz. -->
+                <button type="button" class="btn btn-danger ml-1" (click)="voltarParaListagem()">
                     <i class="fa fa-arrow-alt-circle-left"></i> Voltar
-                    <!-- Ícone de voltar (usando FontAwesome) acompanhado do texto "Voltar". -->
                 </button>
             </div>
         </div>

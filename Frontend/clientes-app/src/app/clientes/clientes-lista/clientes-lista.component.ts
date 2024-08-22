@@ -1,49 +1,73 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Cliente } from '../cliente';
-import { ClientesService } from '../../clientes.service';
+import { Cliente } from '../cliente'; // Importa o modelo Cliente que representa a estrutura dos dados do cliente.
+import { ClientesService } from '../../clientes.service'; // Importa o serviço ClientesService que lida com as operações relacionadas a clientes.
 
 @Component({
-  selector: 'app-clientes-lista',
-  templateUrl: './clientes-lista.component.html',
-  styleUrls: ['./clientes-lista.component.css']
+  selector: 'app-clientes-lista', // Seletor que identifica este componente no template HTML.
+  templateUrl: './clientes-lista.component.html', // Caminho para o template HTML deste componente.
+  styleUrls: ['./clientes-lista.component.css'] // Caminho para o arquivo de estilos CSS deste componente.
 })
 export class ClientesListaComponent implements OnInit {
 
-  clientes: Cliente[] = [];  // Lista de clientes que será exibida na tabela
-  clienteSelecionado: Cliente;  // Cliente que será selecionado para edição ou deleção
-  mensagemSucesso: string;  // Mensagem de sucesso a ser exibida após uma operação bem-sucedida
-  mensagemErro: string;  // Mensagem de erro a ser exibida em caso de falha em uma operação
+  // Array que armazena a lista de clientes obtida através do serviço. Inicialmente, está vazio.
+  clientes: Cliente[] = [];
 
+  // Propriedade para armazenar o cliente selecionado para exclusão.
+  clienteSelecionado: Cliente;
+
+  // Propriedade para armazenar a mensagem de sucesso que será exibida ao usuário.
+  mensagemSucesso: string;
+
+  // Propriedade para armazenar a mensagem de erro que será exibida ao usuário.
+  mensagemErro: string;
+
+  // Construtor da classe que injeta dependências necessárias: ClientesService para realizar operações relacionadas a clientes,
+  // e Router para permitir navegação programática entre as páginas do aplicativo.
   constructor(
-    private service: ClientesService,  // Injeta o serviço ClientesService para manipulação de dados
-    private router: Router  // Injeta o serviço Router para navegação entre páginas
+    private service: ClientesService, // Serviço que lida com operações de CRUD para clientes.
+    private router: Router // Serviço de roteamento que permite a navegação programática.
   ) {}
 
+  // Método do ciclo de vida do Angular que é executado assim que o componente é inicializado.
   ngOnInit(): void {
+    // Chama o método 'getClientes' do serviço para obter a lista de clientes do backend.
+    // O método 'subscribe' é usado para lidar com a resposta assíncrona, onde a lista de clientes é atribuída à propriedade 'clientes'.
     this.service
-      .getClientes()  // Chama o serviço para obter a lista de clientes
-      .subscribe(resposta => this.clientes = resposta);  // Preenche o array clientes com a resposta recebida do servidor
+      .getClientes() // Faz uma chamada HTTP para obter a lista de clientes.
+      .subscribe(
+        resposta => this.clientes = resposta, // Se a chamada for bem-sucedida, atribui a resposta (lista de clientes) à propriedade 'clientes'.
+        erro => this.mensagemErro = 'Erro ao carregar a lista de clientes.' // Em caso de erro, define uma mensagem de erro.
+      );
   }
 
+  // Método que navega para a página de formulário de cadastro de novos clientes.
+  // É chamado quando o usuário clica no botão "Novo" na interface.
   novoCadastro() {
-    this.router.navigate(['/clientes-form']);  // Navega para a página de formulário de cadastro de clientes
+    this.router.navigate(['/clientes/form']); // Navega programaticamente para a rota '/clientes/form' onde o formulário de cadastro é exibido.
   }
 
+  // Método que armazena o cliente selecionado pelo usuário para exclusão.
+  // É chamado quando o usuário clica no botão de exclusão de um cliente na lista.
   preparaDelecao(cliente: Cliente) {
-    this.clienteSelecionado = cliente;  // Armazena o cliente selecionado para deleção
+    this.clienteSelecionado = cliente; // Atribui o cliente clicado à propriedade 'clienteSelecionado'.
   }
 
+  // Método que realiza a exclusão do cliente selecionado.
+  // É chamado quando o usuário confirma a exclusão no modal de confirmação.
   deletarCliente() {
+    // Chama o método 'deletar' do serviço passando o cliente selecionado. 
+    // O serviço realiza a chamada HTTP para excluir o cliente no backend.
     this.service
-      .deletar(this.clienteSelecionado)  // Chama o serviço para deletar o cliente selecionado
+      .deletar(this.clienteSelecionado)
       .subscribe(
         response => {
-          this.mensagemSucesso = 'Cliente deletado com sucesso!';  // Define a mensagem de sucesso
-          this.ngOnInit();  // Recarrega a lista de clientes para refletir a deleção
+          // Se a exclusão for bem-sucedida, exibe uma mensagem de sucesso e recarrega a lista de clientes.
+          this.mensagemSucesso = 'Cliente deletado com sucesso!'; // Define a mensagem de sucesso que será exibida na interface.
+          this.ngOnInit(); // Recarrega a lista de clientes chamando novamente o 'ngOnInit', atualizando a exibição.
         },
-        erro => this.mensagemErro = 'Ocorreu um erro ao deletar o cliente.'  // Define a mensagem de erro em caso de falha
+        erro => this.mensagemErro = 'Ocorreu um erro ao deletar o cliente.'  // Em caso de erro, define a mensagem de erro para ser exibida.
       );
   }
 }

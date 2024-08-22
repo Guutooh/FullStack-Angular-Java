@@ -3,13 +3,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-
-  production: false, // Indica se o ambiente é de produção (false para ambiente de desenvolvimento)
-  apiURLBase: 'http://localhost:8080', // URL base da API para o backend, utilizado para construir os endpoints das requisições
-  clientId: 'my-angular-app', // ID do cliente para autenticação OAuth2, utilizado para identificar a aplicação cliente
-  clientSecret: '@321', // Segredo do cliente para autenticação OAuth2, utilizado em conjunto com o clientId para autenticação segura
-  obterTokenUrl: '/oauth/token', // Endpoint para obtenção de tokens de autenticação, usado no fluxo de login OAuth2
-  
+  production: false,
+  apiURLBase: 'http://localhost:8080',
+  clientId: 'my-angular-app',
+  clientSecret: '@321',
+  obterTokenUrl: '/oauth/token'
 };
 
 /*

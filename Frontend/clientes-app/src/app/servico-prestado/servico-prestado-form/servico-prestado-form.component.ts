@@ -1,47 +1,83 @@
-import { Component, OnInit } from '@angular/core';
-import { Cliente } from '../../clientes/cliente'; // Importa o modelo Cliente
-import { ClientesService } from '../../clientes.service'; // Importa o serviço para manipulação de clientes
-import { ServicoPrestado } from '../servicoPrestado'; // Importa o modelo ServicoPrestado
-import { ServicoPrestadoService } from '../../servico-prestado.service'; // Importa o serviço para manipulação de serviços prestados
+// Importa os módulos necessários do Angular.
+import { Component, OnInit } from '@angular/core'; 
 
+// Importa a classe Cliente, que representa a entidade Cliente.
+import { Cliente } from '../../clientes/cliente'; 
+
+// Importa o serviço ClientesService, que lida com operações relacionadas aos clientes.
+import { ClientesService } from '../../clientes.service'; 
+
+// Importa a classe ServicoPrestado, que representa a entidade Serviço Prestado.
+import { ServicoPrestado } from '../servicoPrestado'; 
+
+// Importa o serviço ServicoPrestadoService, que lida com operações relacionadas aos serviços prestados.
+import { ServicoPrestadoService } from '../../servico-prestado.service'; 
+
+// Decorador que define o componente Angular.
 @Component({
-  selector: 'app-servico-prestado-form', // Define o seletor do componente
-  templateUrl: './servico-prestado-form.component.html', // Define o caminho para o template HTML deste componente
-  styleUrls: ['./servico-prestado-form.component.css'] // Define o caminho para os arquivos de estilo CSS deste componente
+  // Define o seletor para este componente, que pode ser usado no HTML como <app-servico-prestado-form>.
+  selector: 'app-servico-prestado-form', 
+
+  // Especifica o arquivo de template HTML para este componente.
+  templateUrl: './servico-prestado-form.component.html', 
+
+  // Especifica o arquivo de estilos CSS para este componente.
+  styleUrls: ['./servico-prestado-form.component.css'] 
 })
+
+// Exporta a classe do componente, que implementa a interface OnInit.
 export class ServicoPrestadoFormComponent implements OnInit {
 
-  clientes: Cliente[] = []; // Array para armazenar a lista de clientes
-  servico: ServicoPrestado; // Objeto que representa o serviço prestado que será criado ou editado
-  success: boolean = false; // Flag para indicar se o serviço foi salvo com sucesso
-  errors: String[]; // Array para armazenar mensagens de erro
+  // Array que armazena a lista de clientes disponíveis.
+  clientes: Cliente[] = [];
 
+  // Instância de ServicoPrestado para armazenar os dados do serviço prestado.
+  servico: ServicoPrestado;
+
+  // Variável que indica se a operação foi bem-sucedida.
+  success: boolean = false;
+
+  // Array que armazena mensagens de erro retornadas pelo backend.
+  errors: String[];
+
+  // Construtor que injeta os serviços necessários.
   constructor(
-    private clienteService: ClientesService, // Injeta o serviço ClientesService
-    private service: ServicoPrestadoService // Injeta o serviço ServicoPrestadoService
+    // Injeta o serviço ClientesService para obter a lista de clientes.
+    private clienteService: ClientesService,
+
+    // Injeta o serviço ServicoPrestadoService para salvar os dados do serviço prestado.
+    private service: ServicoPrestadoService
   ) { 
-    this.servico = new ServicoPrestado(); // Inicializa o objeto servico como uma nova instância de ServicoPrestado
+    // Inicializa uma nova instância de ServicoPrestado.
+    this.servico = new ServicoPrestado();
   }
 
+  // Método do ciclo de vida do Angular que é chamado após a criação do componente.
   ngOnInit(): void {
-    // Método chamado quando o componente é inicializado
+    // Chama o serviço para obter a lista de clientes.
     this.clienteService
-      .getClientes() // Chama o serviço para obter a lista de clientes
-      .subscribe(response => this.clientes = response); // Armazena a lista de clientes na propriedade 'clientes'
+      .getClientes()
+      // Inscreve-se no Observable retornado e atribui a resposta ao array 'clientes'.
+      .subscribe(response => this.clientes = response);
   }
 
+  // Método chamado ao submeter o formulário de serviço prestado.
   onSubmit() {
-    // Método chamado ao submeter o formulário
+    // Chama o serviço para salvar o serviço prestado.
     this.service
-      .salvar(this.servico) // Chama o serviço para salvar o serviço prestado
+      .salvar(this.servico)
+      // Inscreve-se no Observable retornado para manipular a resposta ou o erro.
       .subscribe(response => {
-        this.success = true; // Define a flag de sucesso como true
-        this.errors = null; // Limpa as mensagens de erro
-        this.servico = new ServicoPrestado(); // Reseta o objeto 'servico' para criar um novo formulário limpo
+        // Se a operação for bem-sucedida, define 'success' como true e limpa os erros.
+        this.success = true;
+        this.errors = null;
+
+        // Reinicializa a instância de ServicoPrestado após o salvamento.
+        this.servico = new ServicoPrestado();
       }, errorResponse => {
-        this.success = false; // Define a flag de sucesso como false em caso de erro
-        this.errors = errorResponse.error.errors; // Armazena as mensagens de erro retornadas pela API
+        // Se houver um erro, define 'success' como false e armazena as mensagens de erro.
+        this.success = false;
+        this.errors = errorResponse.error.errors;
       });
   }
-
 }

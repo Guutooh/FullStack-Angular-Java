@@ -1,87 +1,87 @@
+<!-- Este div encapsula toda a navegação lateral do layout do sistema -->
 <div id="layoutSidenav_nav">
-    <!-- Contêiner para a navegação lateral (sidebar).
-         Este `div` encapsula toda a estrutura da barra lateral de navegação, que inclui os links de navegação
-         e as seções/cabeçalhos que organizam esses links. O `id="layoutSidenav_nav"` é usado para aplicar estilos específicos
-         e para identificar a navegação lateral no layout. -->
-
+    
+    <!-- O elemento <nav> define a barra de navegação lateral -->
+    <!-- As classes 'sb-sidenav', 'accordion' e 'sb-sidenav-dark' estilizam a navegação -->
+    <!-- 'sb-sidenav-dark' indica que o estilo do menu será escuro, enquanto 'accordion' sugere que os submenus podem ser expandidos ou colapsados -->
     <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-        <!-- Elemento de navegação lateral.
-             A classe `sb-sidenav` é uma classe personalizada que define o estilo geral da barra lateral,
-             enquanto `accordion` permite que a barra lateral tenha comportamentos de expansão e colapso.
-             A classe `sb-sidenav-dark` aplica um tema escuro à barra lateral.
-             O `id="sidenavAccordion"` é utilizado para controlar os elementos colapsáveis da barra lateral. -->
-
+        
+        <!-- Este div agrupa o conteúdo do menu de navegação -->
         <div class="sb-sidenav-menu">
-            <!-- Contêiner para o menu de navegação dentro da sidebar.
-                 Este `div` agrupa todos os itens de navegação (links) da barra lateral, facilitando o gerenciamento
-                 do layout e estilo dos links. -->
-
+            
+            <!-- Este div contém todos os links de navegação dentro do menu -->
             <div class="nav">
-                <!-- Início dos itens de navegação.
-                     Este `div` agrupa os links de navegação, além de qualquer cabeçalho/seção
-                     que os organize de maneira lógica. -->
-
+                
+                <!-- Este div é um cabeçalho que separa diferentes seções do menu -->
                 <div class="sb-sidenav-menu-heading">Sistema</div>
-                <!-- Cabeçalho/seção para o grupo de links relacionados ao sistema.
-                     A classe `sb-sidenav-menu-heading` estiliza este texto como um cabeçalho dentro da barra lateral,
-                     geralmente com um tamanho de fonte maior e um estilo que destaca a separação entre seções. -->
-
+                
+                <!-- Link de navegação que redireciona o usuário para a página inicial (Home) -->
+                <!-- 'routerLink' é uma diretiva Angular que define a rota para onde o link deve direcionar -->
                 <a class="nav-link" routerLink="/home">
-                    <!-- Link de navegação para a página Home.
-                         A classe `nav-link` aplica estilos básicos de link de navegação, como cor, margem, e comportamento de hover.
-                         O atributo `routerLink="/home"` define a rota Angular para onde este link redireciona. -->
-
+                    <!-- Div que contém o ícone associado ao link de navegação -->
+                    <!-- 'fas fa-tachometer-alt' são classes do Font Awesome que especificam o ícone do velocímetro -->
                     <div class="sb-nav-link-icon">
                         <i class="fas fa-tachometer-alt"></i>
-                        <!-- Ícone de "tachômetro" (usando FontAwesome) para representar a página Home.
-                             O ícone é inserido dentro de um `div` com a classe `sb-nav-link-icon`, que é responsável por alinhar
-                             e estilizar o ícone ao lado do texto do link. -->
                     </div>
+                    <!-- Texto que será exibido ao lado do ícone no link -->
                     Home
-                    <!-- Texto exibido ao lado do ícone, representando o link para a página inicial da aplicação. -->
                 </a>
 
+                <!-- Outro cabeçalho que categoriza a seção de cadastros no menu -->
                 <div class="sb-sidenav-menu-heading">Cadastros</div>
-                <!-- Cabeçalho/seção para o grupo de links relacionados aos cadastros.
-                     Esta seção agrupa os links de navegação para diferentes áreas de cadastro, como clientes e serviços prestados. -->
 
-                <a class="nav-link collapsed" routerLink="/clientes-lista" 
+                <!-- Link de navegação para a página de clientes -->
+                <!-- A classe 'collapsed' indica que o submenu está colapsado (recolhido) por padrão -->
+                <!-- A diretiva 'routerLink' especifica a rota para a página de clientes -->
+                <!-- Os atributos 'data-toggle', 'data-target', 'aria-expanded' e 'aria-controls' gerenciam o comportamento de colapsar/expandir o submenu -->
+                <a class="nav-link collapsed" routerLink="/clientes" 
                     data-toggle="collapse" data-target="#collapseLayouts" 
                     aria-expanded="false" aria-controls="collapseLayouts">
-                    <!-- Link de navegação para a página de lista de clientes.
-                         A classe `nav-link collapsed` indica que este link pode expandir ou colapsar,
-                         mas por padrão está colapsado. O `routerLink="/clientes-lista"` define a rota Angular
-                         para onde este link redireciona. Os atributos `data-toggle="collapse"` e `data-target="#collapseLayouts"`
-                         são usados para controlar a expansão e colapso do link. O `aria-expanded="false"` indica o estado inicial
-                         (não expandido), e `aria-controls="collapseLayouts"` é usado para acessibilidade, especificando o ID
-                         do elemento controlado por este link. -->
-
+                    <!-- Div que contém o ícone associado ao link de navegação -->
+                    <!-- 'fas fa-columns' são classes do Font Awesome que especificam o ícone de colunas -->
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                    <!-- Ícone de "colunas" (usando FontAwesome) para representar os cadastros de clientes.
-                         Este ícone ajuda a visualizar rapidamente a funcionalidade do link. -->
+                    <!-- Texto que será exibido ao lado do ícone no link -->
                     Clientes
-                    <!-- Texto que acompanha o ícone, indicando que o link leva à página de clientes. -->
                 </a>
 
-                <a class="nav-link collapsed" routerLink="servico-prestado-listagem" 
+                <!-- Link de navegação para a página de serviços prestados -->
+                <!-- Estrutura similar ao link anterior, com um ícone diferente e rota apontando para serviços prestados -->
+                <a class="nav-link collapsed" routerLink="/servicos-prestados" 
                     data-toggle="collapse" data-target="#collapseLayouts" 
                     aria-expanded="false" aria-controls="collapseLayouts">
-                    <!-- Link de navegação para a página de lista de serviços prestados.
-                         Este link é estruturado de maneira semelhante ao anterior, com as mesmas classes e atributos
-                         para controle de colapso e acessibilidade. O `routerLink="servico-prestado-listagem"` define
-                         a rota Angular para a lista de serviços prestados. -->
-
+                    <!-- Div que contém o ícone associado ao link de navegação -->
+                    <!-- 'fas fa-address-card' são classes do Font Awesome que especificam o ícone de cartão de endereço -->
                     <div class="sb-nav-link-icon"><i class="fas fa-address-card"></i></div>
-                    <!-- Ícone de "cartão de endereço" (usando FontAwesome) para representar os serviços prestados.
-                         Este ícone fornece uma pista visual sobre a função do link. -->
+                    <!-- Texto que será exibido ao lado do ícone no link -->
                     Serviços Prestados
-                    <!-- Texto que acompanha o ícone, indicando que o link leva à página de serviços prestados. -->
                 </a>
 
+                <!-- Outro cabeçalho para categorizar a seção de logout -->
                 <div class="sb-sidenav-menu-heading">Logout</div>
-                <!-- Cabeçalho/seção para a opção de logout.
-                     Esta seção indica onde o usuário pode encontrar a opção para sair do sistema. -->
+
+                <!-- Link de navegação para realizar logout -->
+                <!-- 'collapsed' indica que o submenu está colapsado por padrão -->
+                <!-- A função 'logout()' será chamada quando o link for clicado, e essa função é definida no componente TypeScript associado -->
+                <!-- O link também tem atributos de colapsar/expandir, embora eles possam ser redundantes aqui, já que o logout normalmente não teria submenus -->
+                <a class="nav-link collapsed" (click)="logout();" href="#"
+                    data-toggle="collapse" data-target="#collapseLayouts" 
+                    aria-expanded="false" aria-controls="collapseLayouts">
+                    <!-- Div que contém o ícone associado ao link de navegação -->
+                    <!-- 'fas fa-sign-out-alt' são classes do Font Awesome que especificam o ícone de sair -->
+                    <div class="sb-nav-link-icon"><i class="fas fa-sign-out-alt"></i></div>
+                    <!-- Texto que será exibido ao lado do ícone no link -->
+                    Sair
+                </a>
             </div>
+        </div>
+
+        <!-- Rodapé da navegação lateral -->
+        <!-- Exibe informações sobre o usuário atualmente logado -->
+        <div class="sb-sidenav-footer">
+            <!-- Texto descritivo indicando o usuário logado -->
+            <div class="small">Usuário Logado:</div>
+            <!-- Exibe o nome do usuário logado utilizando interpolação Angular -->
+            {{ usuarioLogado }}
         </div>
     </nav>
 </div>

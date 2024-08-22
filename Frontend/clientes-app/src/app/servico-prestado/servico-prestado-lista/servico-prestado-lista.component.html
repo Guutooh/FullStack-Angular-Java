@@ -1,166 +1,102 @@
+<!-- Título da página para a seção "Serviço Prestado" com margem superior -->
 <h1 class="mt-4">Serviço Prestado</h1>
-<!-- Título principal da página, com margem superior (mt-4) para adicionar espaçamento acima do título. 
-     Este título indica que a página está relacionada ao gerenciamento ou à consulta de serviços prestados. -->
 
+<!-- Barra de navegação breadcrumb com margem inferior -->
 <ol class="breadcrumb mb-4">
-    <li class="breadcrumb-item active">Consulta</li>
-    <!-- Barra de navegação (breadcrumb) que mostra a localização atual do usuário na aplicação.
-         Aqui, "Consulta" está marcado como o item ativo, indicando que o usuário está na página de consulta. 
-         A classe `breadcrumb-item active` estiliza este item para destacá-lo dos demais. -->
+    <!-- Indica a página atual como "Consulta" -->
+    <li class="breadcrum-bitem active">Consulta</li>
 </ol>
 
+<!-- Contêiner principal que centraliza e organiza o conteúdo -->
 <div class="container">
-    <!-- Container principal que centraliza o conteúdo da página, garantindo que o layout seja 
-         responsivo e organizado de acordo com o tamanho da tela. -->
-
+    <!-- Formulário Angular vinculado ao objeto 'ngForm' para a busca de serviços prestados -->
     <form #consultaForm="ngForm" (submit)="consultar()">
-        <!-- Formulário Angular vinculado ao objeto `ngForm`, que permite acessar o estado do formulário 
-             e realizar validações. O evento `(submit)` chama o método `consultar()` no componente Angular 
-             quando o formulário é submetido. -->
-
+        
+        <!-- Linha contendo os campos de entrada para filtrar os serviços -->
         <div class="row">
-            <!-- Linha que agrupa os campos de entrada, organizando-os em colunas para garantir um 
-                 layout responsivo. -->
-
+            <!-- Campo de entrada para o nome do cliente -->
             <div class="col-md-6">
-                <!-- Coluna de 6 unidades de largura (em um grid de 12), ocupando metade da largura 
-                     da linha em telas de tamanho médio ou maior. -->
-
+                <!-- Rótulo para o campo de nome do cliente -->
                 <label for="inputNome">Nome Cliente:</label>
-                <!-- Rótulo associado ao campo de entrada do nome do cliente, com o atributo `for` 
-                     vinculado ao id "inputNome", facilitando a navegação para usuários de tecnologias assistivas. -->
-
+                <!-- Campo de texto vinculado ao modelo Angular 'nome' para capturar o nome do cliente -->
                 <input type="text" [(ngModel)]="nome" 
                        name="nome" class="form-control"
                        id="inputNome">
-                <!-- Campo de entrada de texto onde o usuário pode digitar o nome do cliente para filtrar 
-                     a consulta. A diretiva `[(ngModel)]="nome"` vincula o valor do campo ao modelo `nome` 
-                     no componente Angular. O atributo `name="nome"` é necessário para a vinculação do 
-                     formulário, e `class="form-control"` aplica os estilos do Bootstrap ao campo de entrada. -->
             </div>
 
+            <!-- Campo de seleção para o mês de prestação do serviço -->
             <div class="col-md-6">
-                <!-- Coluna de 6 unidades de largura para o campo de seleção do mês, que ocupa a outra 
-                     metade da linha em dispositivos de tamanho médio ou maior. -->
-
+                <!-- Rótulo para o campo de mês -->
                 <label for="inputMes">Mês:</label>
-                <!-- Rótulo para o campo de seleção do mês, com o atributo `for="inputMes"` que associa 
-                     o rótulo ao campo de seleção identificado pelo id "inputMes". -->
-
+                <!-- Campo de seleção para escolher o mês, vinculado ao modelo Angular 'mes' -->
                 <select [(ngModel)]="mes" class="form-control" name="mes">
-                    <!-- Campo de seleção (dropdown) onde o usuário pode escolher o mês para filtrar a consulta. 
-                         O campo é vinculado ao modelo `mes`, que armazena o valor selecionado. 
-                         `class="form-control"` aplica estilos do Bootstrap, e `name="mes"` é necessário 
-                         para a vinculação com o Angular Forms. -->
-
+                    <!-- Opção padrão para indicar ao usuário que selecione um mês -->
                     <option value="">Selecione...</option>
-                    <!-- Opção padrão que indica ao usuário para selecionar um mês. Não tem valor associado (`value=""`), 
-                         servindo como uma instrução para o usuário selecionar um item da lista. -->
-
+                    <!-- Loop para criar uma opção para cada mês disponível na lista 'meses' -->
                     <option *ngFor="let mes of meses" [value]="mes">
-                        <!-- Gera dinamicamente as opções do dropdown com base no array `meses`. 
-                             A diretiva `*ngFor` itera sobre cada item no array `meses`, criando uma 
-                             opção no dropdown para cada mês. O atributo `[value]="mes"` define o valor 
-                             da opção como o número do mês atual na iteração. -->
                         {{ mes }}
-                        <!-- Exibe o número do mês como o texto da opção no dropdown. -->
                     </option>
                 </select>
             </div>
         </div>
 
+        <!-- Espaço vertical entre os campos e os botões de ação -->
         <br />
-        <!-- Linha em branco para adicionar espaçamento vertical entre as seções do formulário. -->
 
+        <!-- Linha contendo os botões de ação -->
         <div class="row">
-            <!-- Linha que agrupa os botões de ação. -->
-
             <div class="col-md-4">
-                <!-- Coluna de 4 unidades de largura para os botões de ação, que são organizados 
-                     em uma linha com largura reduzida, deixando espaço em branco à direita. -->
-
+                <!-- Botão para enviar o formulário de busca, acionando a função 'consultar()' -->
                 <button type="submit" class="btn btn-primary">
+                    <!-- Ícone de lupa indicando a ação de busca -->
                     <i class="fa fa-search"></i> Consultar
-                    <!-- Botão para submeter o formulário e iniciar a consulta. O ícone `fa-search` da 
-                         FontAwesome indica visualmente a ação de pesquisa. A classe `btn btn-primary` 
-                         aplica os estilos de botão principal do Bootstrap (azul). -->
                 </button>
 
+                <!-- Botão para redirecionar o usuário para o formulário de novo serviço prestado -->
                 <button type="button" 
-                        routerLink="/servico-prestado-form"
+                        routerLink="/servicos-prestados/form"
                         class="btn btn-warning ml-1">
+                    <!-- Ícone de adição indicando a criação de um novo registro -->
                     <i class="fa fa-plus"></i> Novo
-                    <!-- Botão para navegar para o formulário de cadastro de um novo serviço prestado. 
-                         O atributo `routerLink="/servico-prestado-form"` define a rota para onde o usuário 
-                         será redirecionado ao clicar no botão. A classe `btn btn-warning` aplica o estilo 
-                         de botão de alerta (amarelo) do Bootstrap, e `ml-1` adiciona uma pequena margem à 
-                         esquerda para separar os botões. O ícone `fa-plus` indica a ação de adicionar 
-                         um novo item. -->
                 </button>
             </div>
         </div>
     </form>
 
+    <!-- Espaço vertical entre o formulário e os resultados da busca -->
     <br />
-    <!-- Linha em branco para adicionar espaçamento entre o formulário e os resultados da consulta. -->
 
+    <!-- Linha para exibir os resultados da busca -->
     <div class="row">
-        <!-- Linha que agrupa a mensagem de alerta e a tabela de resultados da consulta. -->
-
+        <!-- Alerta de aviso caso nenhum resultado seja encontrado, exibido se 'message' estiver definida -->
         <div class="alert alert-warning" role="alert" *ngIf="message">
-            {{ message }}
-            <!-- Exibe uma mensagem de alerta quando a variável `message` contém texto. 
-                 A diretiva `*ngIf="message"` garante que o alerta só seja exibido se houver uma 
-                 mensagem definida. A classe `alert alert-warning` aplica o estilo de alerta 
-                 de aviso (amarelo) do Bootstrap. -->
+            {{ message }}   
         </div>
-
+        
+        <!-- Coluna contendo a tabela de resultados da busca -->
         <div class="col-md-12">
-            <!-- Coluna que ocupa toda a largura da linha para exibir a tabela de resultados da consulta. -->
-
+            <!-- Tabela com os resultados da busca -->
             <table class="table">
-                <!-- Tabela para exibir os resultados da consulta. A classe `table` aplica os estilos do 
-                     Bootstrap para tabelas, incluindo bordas, espaçamento e alinhamento de texto. -->
-
                 <thead>
                     <tr>
-                        <!-- Linha de cabeçalho da tabela, que define os títulos das colunas. -->
+                        <!-- Cabeçalhos das colunas da tabela -->
                         <th>Cliente</th>
-                        <!-- Cabeçalho da coluna que indica que os dados nesta coluna são referentes aos clientes. -->
                         <th>Descrição</th>
-                        <!-- Cabeçalho da coluna que indica que os dados nesta coluna são referentes à descrição 
-                             dos serviços prestados. -->
                         <th>Preço</th>
-                        <!-- Cabeçalho da coluna que indica que os dados nesta coluna são referentes ao valor dos serviços prestados. -->
                         <th>Data</th>
-                        <!-- Cabeçalho da coluna que indica que os dados nesta coluna são referentes à data 
-                             em que os serviços foram prestados. -->
                     </tr>
                 </thead>
-
                 <tbody>
+                    <!-- Loop para exibir cada serviço prestado na lista 'lista' -->
                     <tr *ngFor="let s of lista">
-                        <!-- Linha da tabela gerada dinamicamente para cada item na lista `lista`, 
-                             que contém os resultados da consulta. A diretiva `*ngFor` itera sobre 
-                             cada item na lista, gerando uma linha na tabela para cada serviço prestado. -->
-
+                        <!-- Exibe o nome do cliente relacionado ao serviço prestado -->
                         <td>{{ s.cliente.nome }}</td>
-                        <!-- Coluna que exibe o nome do cliente associado ao serviço prestado. 
-                             O valor é extraído da propriedade `nome` do objeto `cliente` dentro do item `s`. -->
-
+                        <!-- Exibe a descrição do serviço prestado -->
                         <td>{{ s.descricao }}</td>
-                        <!-- Coluna que exibe a descrição do serviço prestado. 
-                             O valor é extraído da propriedade `descricao` do objeto `s`. -->
-
-                        <td>{{ s.valor | currency : 'BRL' }}</td>
-                        <!-- Coluna que exibe o valor do serviço prestado, formatado como moeda brasileira (R$). 
-                             O pipe `currency` é usado para formatar o valor monetário de acordo com a 
-                             configuração de localização e moeda fornecidas (aqui, 'BRL' para Reais). -->
-
+                        <!-- Exibe o valor do serviço prestado -->
+                        <td>{{ s.valor }}</td>
+                        <!-- Exibe a data de realização do serviço -->
                         <td>{{ s.data }}</td>
-                        <!-- Coluna que exibe a data em que o serviço foi prestado. 
-                             O valor é extraído da propriedade `data` do objeto `s`. 
-                             Este campo pode ser formatado conforme necessário, dependendo do formato de data desejado. -->
                     </tr>
                 </tbody>
             </table>

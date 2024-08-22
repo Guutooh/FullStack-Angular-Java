@@ -1,0 +1,50 @@
+<!-- Componente de barra de navegação -->
+<app-navbar></app-navbar>
+<!-- Este componente Angular é responsável por renderizar a barra de navegação no topo da página. -->
+
+<!-- Layout principal que inclui a barra lateral e o conteúdo -->
+<div id="layoutSidenav">
+  
+  <!-- Componente de barra lateral -->
+  <app-sidebar></app-sidebar> 
+  <!-- Este componente Angular renderiza a barra lateral da página, que geralmente contém links de navegação e outras opções. -->
+
+  <!-- Área de conteúdo principal ao lado da barra lateral -->
+  <div id="layoutSidenav_content">
+    <main>
+      <!-- Contêiner para garantir que o conteúdo tenha espaçamento adequado e ocupe toda a largura disponível -->
+      <div class="container-fluid">
+        <!-- Ponto de inserção de componentes de acordo com as rotas definidas -->
+        <router-outlet></router-outlet>
+        <!-- O router-outlet é um ponto de inserção dinâmico onde o Angular carrega os componentes baseados na rota ativa. -->
+      </div>
+      
+      <!-- Rodapé da página -->
+      <footer class="py-4 bg-light mt-auto">
+        <!-- Rodapé estilizado com padding vertical, fundo claro e margem superior automática -->
+        <div class="container-fluid">
+          <!-- Contêiner fluido para garantir que o conteúdo do rodapé ocupe toda a largura disponível -->
+
+          <!-- Linha flexível para alinhar itens horizontalmente -->
+          <div class="d-flex align-items-center justify-content-between small">
+            <!-- A classe "d-flex" ativa o Flexbox, "align-items-center" alinha verticalmente os itens ao centro,
+                 e "justify-content-between" distribui os itens com espaço entre eles. A classe "small" aplica um tamanho de texto menor. -->
+            
+            <!-- Texto de copyright -->
+            <div class="text-muted">Copyright &copy; Meus Clientes 2020</div>
+            <!-- O texto de copyright é estilizado com uma cor mais suave usando "text-muted". -->
+
+            <!-- Links adicionais no rodapé -->
+            <div>
+              <a href="#">Privacy Policy</a>
+              &middot;
+              <!-- O "&middot;" é um ponto médio usado para separar os links de forma elegante. -->
+              <a href="#">Terms &amp; Conditions</a>
+              <!-- Links para a política de privacidade e os termos e condições da aplicação. -->
+            </div>
+          </div>
+        </div>
+      </footer>
+    </main>
+  </div>
+</div>

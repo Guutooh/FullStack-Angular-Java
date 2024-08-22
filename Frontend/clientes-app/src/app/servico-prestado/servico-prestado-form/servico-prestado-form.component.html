@@ -1,123 +1,118 @@
+<!-- Título da página, com uma margem superior (mt-4) para espaçamento -->
 <h1 class="mt-4">Serviço Prestado</h1>
-<!-- Título da página com uma margem superior (classe mt-4) para adicionar espaçamento acima do título.
-     O título "Serviço Prestado" indica que esta página está relacionada ao gerenciamento de serviços prestados. -->
 
+<!-- Barra de navegação (breadcrumb) com margem inferior (mb-4) para espaçamento -->
 <ol class="breadcrumb mb-4">
+    <!-- Item ativo do breadcrumb indicando que o usuário está na seção "Novo" -->
     <li class="breadcrumb-item active">Novo</li>
-    <!-- Barra de navegação (breadcrumb) que orienta o usuário sobre sua localização na aplicação.
-         Aqui, "Novo" está marcado como o item ativo, indicando que o usuário está na seção de criação 
-         de um novo serviço prestado. A classe `breadcrumb-item active` estiliza o item para destacá-lo. -->
 </ol>
 
+<!-- Contêiner principal que centraliza o conteúdo da página -->
 <div class="container">
-    <!-- Container que centraliza e organiza o conteúdo da página dentro de uma largura fixa em telas maiores,
-         e ajusta a largura em telas menores para garantir um layout responsivo. -->
 
+    <!-- Formulário Angular vinculado ao modelo 'ngForm' e ao método 'onSubmit()' para submissão -->
     <form #form="ngForm" (submit)="onSubmit()">
-        <!-- Formulário Angular vinculado ao objeto 'ngForm', que permite acessar o estado do formulário
-             e realizar validações. O evento `(submit)` chama o método `onSubmit()` no componente Angular 
-             quando o formulário é submetido. -->
-
+        
+        <!-- Linha para exibição de mensagens de sucesso ou erro -->
         <div class="row">
+            <!-- Coluna que ocupa toda a largura da linha (12 unidades em um grid de 12) -->
             <div class="col-md-12">
-                <!-- Coluna de 12 unidades de largura (ocupando toda a linha em um grid de 12 colunas). -->
-
+                
+                <!-- Alerta de sucesso exibido quando 'success' é verdadeiro -->
                 <div class="alert alert-success" role="alert" *ngIf="success == true">
-                    <!-- Alerta de sucesso que é exibido apenas se a variável `success` for verdadeira. 
-                         A classe `alert alert-success` aplica os estilos do Bootstrap para alertas de sucesso (verde). -->
-                    Serviço Prestado salvo com sucesso!
+                    <!-- Mensagem de confirmação de que o serviço prestado foi salvo com sucesso -->
+                    Serviço Prestado salvo com sucesso!    
                 </div>
-
+                
+                <!-- Alerta de erro exibido para cada erro presente no array 'errors' -->
                 <div class="alert alert-danger" role="alert" *ngFor="let erro of errors">
-                    <!-- Alerta de erro que é exibido para cada mensagem de erro presente na lista `errors`.
-                         A classe `alert alert-danger` aplica os estilos do Bootstrap para alertas de erro (vermelho). -->
-                    {{ erro }}
+                    <!-- Exibe cada erro retornado pelo backend -->
+                    {{ erro }}    
                 </div>
             </div>
         </div>
-
-        <!-- Seção de seleção do cliente -->
+        
+        <!-- Linha contendo o campo de seleção de cliente -->
         <div class="row">
             <div class="col-md-12">
+                <!-- Grupo de formulário para selecionar o cliente relacionado ao serviço -->
                 <div class="form-group">
+                    <!-- Rótulo do campo de seleção de cliente -->
                     <label>Cliente: </label>
-                    <select class="form-control"
+                    <!-- Campo de seleção com 'ngModel' independente, vinculado ao ID do cliente -->
+                    <select class="form-control" 
                             [ngModelOptions]="{standalone: true}"
                             [(ngModel)]="servico.idCliente">
-                        <!-- Campo de seleção para escolher o cliente. 
-                             A diretiva `[(ngModel)]` vincula o valor selecionado ao modelo `servico.idCliente`.
-                             `standalone: true` permite que o ngModel funcione de forma independente do form principal. -->
+                        <!-- Opção padrão sem valor, orientando o usuário a selecionar um cliente -->
                         <option value="">Selecione...</option>
-                        <!-- Opção padrão no dropdown para instruir o usuário a selecionar um cliente. -->
-
-                        <option *ngFor="let cliente of clientes"
+                        <!-- Gera uma opção para cada cliente presente na lista 'clientes' -->
+                        <option *ngFor="let cliente of clientes" 
                                 [ngValue]="cliente.id">
-                            <!-- Gera uma opção para cada cliente na lista `clientes`, usando a diretiva `*ngFor`.
-                                 O atributo `[ngValue]="cliente.id"` define o valor da opção como o ID do cliente. -->
+                            <!-- Exibe o nome do cliente na lista de opções -->
                             {{ cliente.nome }}
-                            <!-- Exibe o nome do cliente como texto da opção. -->
                         </option>
                     </select>
                 </div>
             </div>
         </div>
 
-        <!-- Seção de descrição do serviço -->
+        <!-- Linha contendo o campo de descrição do serviço prestado -->
         <div class="row">
             <div class="col-md-12">
+                <!-- Grupo de formulário para inserir a descrição do serviço -->
                 <div class="form-group">
+                    <!-- Rótulo do campo de descrição -->
                     <label>Descrição:</label>
-                    <input class="form-control"
-                           [(ngModel)]="servico.descricao" type="text"
-                           name="descricao" id="inputDescricao">
-                    <!-- Campo de texto onde o usuário pode inserir a descrição do serviço prestado.
-                         A diretiva `[(ngModel)]` vincula o valor do campo ao modelo `servico.descricao`.
-                         `id="inputDescricao"` permite que o campo seja identificado de forma única no documento HTML. -->
+                    <!-- Campo de entrada de texto para a descrição, vinculado ao modelo 'servico.descricao' -->
+                    <input class="form-control" 
+                            [(ngModel)]="servico.descricao" type="text" 
+                            name="descricao" id="inputDescricao">
                 </div>
             </div>
         </div>
 
-        <!-- Seções de data e preço do serviço -->
+        <!-- Linha contendo os campos de data e preço do serviço prestado -->
         <div class="row">
+            <!-- Coluna para o campo de data -->
             <div class="col-md-6">
+                <!-- Grupo de formulário para inserir a data do serviço -->
                 <div class="form-group">
+                    <!-- Rótulo do campo de data -->
                     <label>Data:</label>
-                    <input class="form-control"
-                           [(ngModel)]="servico.data" type="text"
-                           name="data" id="inputData">
-                    <!-- Campo de texto onde o usuário pode inserir a data em que o serviço foi prestado.
-                         A diretiva `[(ngModel)]` vincula o valor do campo ao modelo `servico.data`. -->
+                    <!-- Campo de entrada de texto para a data, vinculado ao modelo 'servico.data' -->
+                    <input class="form-control" 
+                            [(ngModel)]="servico.data" type="text" 
+                            name="data" id="inputData">
                 </div>
             </div>
+            <!-- Coluna para o campo de preço -->
             <div class="col-md-6">
+                <!-- Grupo de formulário para inserir o preço do serviço -->
                 <div class="form-group">
+                    <!-- Rótulo do campo de preço -->
                     <label>Preço:</label>
-                    <input class="form-control"
-                           [(ngModel)]="servico.preco" type="text"
-                           name="preco" id="inputPreco">
-                    <!-- Campo de texto onde o usuário pode inserir o preço do serviço prestado.
-                         A diretiva `[(ngModel)]` vincula o valor do campo ao modelo `servico.preco`. -->
+                    <!-- Campo de entrada de texto para o preço, vinculado ao modelo 'servico.preco' -->
+                    <input class="form-control" 
+                            [(ngModel)]="servico.preco" type="text" 
+                            name="preco" id="inputPreco">
                 </div>
             </div>
         </div>
 
-        <!-- Seção de botões de ação -->
+        <!-- Linha contendo os botões de ação do formulário -->
         <div class="row">
+            <!-- Coluna para os botões de ação -->
             <div class="col-md-3">
-                <!-- Coluna de 3 unidades de largura para organizar os botões de ação, deixando espaço à direita. -->
-
+                <!-- Botão para submeter o formulário, exibido com um ícone de salvar -->
                 <button type="submit" class="btn btn-success">
-                    <i class="fa fa-save"></i>
-                    <!-- Ícone de salvar, usando a biblioteca de ícones FontAwesome.
-                         O botão `submit` envia o formulário quando clicado. -->
+                    <i class="fa fa-save"></i> <!-- Ícone de disquete que simboliza salvar -->
                     Salvar
                 </button>
 
-                <button type="button" routerLink="/servico-prestado-listagem"
+                <!-- Botão para cancelar e voltar à lista de serviços prestados -->
+                <button type="button" routerLink="/servicos-prestados/lista" 
                         class="btn btn-danger ml-1">
-                    <i class="fa fa-arrow-alt-circle-left"></i>
-                    <!-- Ícone de voltar, usando a biblioteca de ícones FontAwesome.
-                         O botão `button` não submete o formulário, mas redireciona o usuário para a página de listagem. -->
+                    <i class="fa fa-arrow-alt-circle-left"></i> <!-- Ícone de seta indicando voltar -->
                     Voltar
                 </button>
             </div>
